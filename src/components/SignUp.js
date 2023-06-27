@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../Images/logo.png";
 import './signup.css';
+import { Link } from "react-router-dom";
 const SignUp = () => {
   return (
     <div className="signup">
@@ -36,6 +37,11 @@ const SignUp = () => {
           By sigining up, you agree to out Terms ,<br/> privacy policy and cookies policy.
         </p>
         <input type="submit" id="submit-btn" value="Sign Up" className="submit-btn" />
+        <Link to="/signin">
+          <p style={{fontSize:"15px",fontWeight:"600",color:"rgba(var(--f52,142,142,142),1)",textAlign:"center",paddingBottom:"15px",cursor:"default"}}>
+            Already have an Account?
+          <span style={{color:"#1729eb",cursor:"pointer"}}>SignIn</span></p>
+        </Link>
         </div>
       </div>
     </div>

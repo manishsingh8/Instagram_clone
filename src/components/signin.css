@@ -1,0 +1,42 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+.signin{
+    background-image:url("https://static.vecteezy.com/system/resources/previews/002/486/289/original/gradient-background-instagram-free-vector.jpg") ;
+    background-size: cover;
+    height:91.3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-div{
+       height:40%;
+       width:20%;
+       outline:none;
+       border: none;
+       background-color:white;
+       border-radius: 4px;
+       box-sizing: border-box;
+       align-items: center;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+}
+.signin-logo{
+    height:100px;
+}
+.submit-btn2{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 2%;
+    width: 50%;
+    border:none;
+    background-color: #1773EA;
+    color:white;
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  

@@ -1,7 +1,7 @@
-/* *{
+*{
     margin:0px;
     padding:0px;
-} */
+}
 
 .signup{
     background-image:url("https://static.vecteezy.com/system/resources/previews/002/486/289/original/gradient-background-instagram-free-vector.jpg") ;
@@ -37,7 +37,7 @@
   input{
     border-radius: 3px;
     height:25px;
-    margin:3px;
+    margin:5px;
     outline:none;
     border: none;
     background-color: rgb(239, 233, 233);
@@ -49,16 +49,15 @@
     border-radius: 4px;
   }
   .submit-btn{
+    margin-top: 15px;
+    margin-bottom: 15px;
     margin-left:25%;
-    width: 50%;
-    margin-bottom: 5px;
+    width: 50%;  
     border:none;
     background-color: #1773EA;
     color:white;
     font-weight: bold;
     padding: 5px 10px;
-  }
-  .submit-btn:hover{
     cursor: pointer;
-    
   }
+  
