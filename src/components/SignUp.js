@@ -17,6 +17,17 @@ const SignUp = () => {
   const notifyB = (msg) => toast.success(msg); 
 
   const postData =()=>{
+      // checking email with regex
+      const emailRegex =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if(!emailRegex.test(email)){
+        notifyA("Invalid Email");
+        return;
+      }else if(!passRegex.test(password)){
+        notifyA("password must contain 8 charecter including 1 Uppercase, 1 lowercase, 1 number and one special charecter");
+        return
+      }
+
      fetch('http://localhost:5000/signup',{
       method:'post',
       headers:{
