@@ -1,27 +1,43 @@
 import React, { useEffect, useState } from "react";
 import logo from "../Images/logo.png";
 import "./signup.css";
-import { Link } from "react-router-dom";
-const SignUp = () => {
+import { Link, useNavigate} from "react-router-dom";
+import { toast } from 'react-toastify';//to show the error message
 
+
+const SignUp = () => {
+  const navigate = useNavigate();
   const[name, setName] = useState("");
   const[email, setEmail] = useState("");
   const[userName,setUserName] = useState("");
   const[password, setPassword] = useState("");
 
+  // toast function
+  const notifyA = (msg) => toast.error(msg); 
+  const notifyB = (msg) => toast.success(msg); 
+
   const postData =()=>{
      fetch('http://localhost:5000/signup',{
       method:'post',
       headers:{
-        "Contect-Type":"application/json"
+        "Content-Type":"application/json"
       },
       body:JSON.stringify({
         name:name,
-        userName:userName,
         email:email,
+        userName:userName,
         password:password
       })
 
+     }).then(res=>res.json())
+     .then(data=>{
+      if(data.error){
+        notifyA(data.error)//error message
+      }else{
+        navigate("/signin");//navigate to signin after successfull registration
+        notifyB(data.message)//success message
+      }
+      console.log(data);
      })
   }
 
@@ -58,7 +74,7 @@ const SignUp = () => {
           <div className="input-field">
             <input
               type="text"
-              name="username"
+              name="userName"
               id="username"
               value = {userName}
               onChange={(e)=>{setUserName(e.target.value)}}
@@ -68,8 +84,8 @@ const SignUp = () => {
           <div className="input-field">
             <input
               type="password"
-              name="passowrd"
-              id="passowrd"
+              name="password"
+              id="password"
               value ={password}
               onChange={(e)=>{setPassword(e.target.value)}}
               placeholder="Password"
