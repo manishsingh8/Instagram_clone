@@ -1,56 +1,60 @@
 import React, { useEffect, useState } from "react";
 import logo from "../Images/logo.png";
 import "./signup.css";
-import { Link, useNavigate} from "react-router-dom";
-import { toast } from 'react-toastify';//to show the error message
-
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; //to show the error message
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const[name, setName] = useState("");
-  const[email, setEmail] = useState("");
-  const[userName,setUserName] = useState("");
-  const[password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
   // toast function
-  const notifyA = (msg) => toast.error(msg); 
-  const notifyB = (msg) => toast.success(msg); 
+  const notifyA = (msg) => toast.error(msg);
+  const notifyB = (msg) => toast.success(msg);
 
-  const postData =()=>{
-      // checking email with regex
-      const emailRegex =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-      if(!emailRegex.test(email)){
-        notifyA("Invalid Email");
-        return;
-      }else if(!passRegex.test(password)){
-        notifyA("password must contain 8 charecter including 1 Uppercase, 1 lowercase, 1 number and one special charecter");
-        return
-      }
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const passRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  
+  
+    const postData = () => {
+    // checking email with regex
+    if (!emailRegex.test(email)) {
+      notifyA("Invalid Email");
+      return;
+    } else if (!passRegex.test(password)) {
+      notifyA(
+        "password must contain 8 charecter including 1 Uppercase, 1 lowercase, 1 number and one special charecter"
+      );
+      return;
+    }
 
-     fetch('http://localhost:5000/signup',{
-      method:'post',
-      headers:{
-        "Content-Type":"application/json"
+    fetch("http://localhost:5000/signup", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify({
-        name:name,
-        email:email,
-        userName:userName,
-        password:password
-      })
-
-     }).then(res=>res.json())
-     .then(data=>{
-      if(data.error){
-        notifyA(data.error)//error message
-      }else{
-        navigate("/signin");//navigate to signin after successfull registration
-        notifyB(data.message)//success message
-      }
-      console.log(data);
-     })
-  }
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        userName: userName,
+        password: password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          notifyA(data.error); //error message
+        } else {
+          navigate("/signin"); //navigate to signin after successfull registration
+          notifyB(data.message); //success message
+        }
+        console.log(data);
+      });
+  };
 
   return (
     <div className="signup">
@@ -78,7 +82,9 @@ const SignUp = () => {
               name="fname"
               id="fname"
               value={name}
-              onChange={(e)=>{setName(e.target.value)}}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
               placeholder="Full Name"
             />
           </div>
@@ -87,8 +93,10 @@ const SignUp = () => {
               type="text"
               name="userName"
               id="username"
-              value = {userName}
-              onChange={(e)=>{setUserName(e.target.value)}}
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
               placeholder="Username"
             />
           </div>
@@ -97,8 +105,10 @@ const SignUp = () => {
               type="password"
               name="password"
               id="password"
-              value ={password}
-              onChange={(e)=>{setPassword(e.target.value)}}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               placeholder="Password"
             />
           </div>
@@ -111,7 +121,9 @@ const SignUp = () => {
             id="submit-btn"
             value="Sign Up"
             className="submit-btn"
-            onClick={()=>{postData()}}
+            onClick={() => {
+              postData();
+            }}
           />
           <Link to="/signin">
             <p
