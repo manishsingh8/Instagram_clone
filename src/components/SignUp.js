@@ -4,7 +4,8 @@ import "./signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"; //to show the error message
 
-const SignUp = () => {
+
+  const SignUp = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
