@@ -9,10 +9,10 @@ const Navbar = () => {
     <div className='navbar'>
       <img src={insta2} alt="logo" className='logo' />
       <ul className='navbar-menu'>
-        <Link to="signin"> <li>SignIn</li></Link> 
-        <Link to="signup"><li>SignUp</li></Link>
-        <Link to="profile"><li>Profile</li></Link>
-      
+        <Link to="/signin"> <li>SignIn</li></Link> 
+        <Link to="/signup"><li>SignUp</li></Link>
+        <Link to="/profile"><li>Profile</li></Link>
+        <Link to="/createPost"><li>CreatePost</li></Link>
       </ul>
 
     </div>
